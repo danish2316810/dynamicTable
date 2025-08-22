@@ -5,8 +5,9 @@ sap.ui.define([
   "sap/m/Input",
   "sap/m/Label",
   "sap/m/ToolbarSpacer",
-  "sap/m/Button"
-], function(Controller, Column, Text, Input, Label, ToolbarSpacer, Button) {
+  "sap/m/Button",
+  "sap/ui/model/json/JSONModel"
+], function(Controller, Column, Text, Input, Label, ToolbarSpacer, Button,JSONModel) {
   "use strict";
 
   return Controller.extend("usib.app.dan.usidappdandynamictable.controller.TableView", {
@@ -15,24 +16,26 @@ sap.ui.define([
       this._config = {
         Nomination: {
           entitySet: "/Nominations",
-          columns: ["NominationId", "StartDate", "EndDate"],
+          columns: ["ID", "NominationId", "StartDate", "EndDate"],
           filters: ["NominationId", "StartDate", "EndDate"]
         },
         Contract: {
           entitySet: "/Contracts",
-          columns: ["ContractId", "Supplier"],
+          columns: ["ID","ContractId", "Supplier"],
           filters: ["ContractId", "Supplier"]
         }
       };
 
       // Mock error types
-      this.getView().setModel(new sap.ui.model.json.JSONModel({
-        errorTypes: [
+      let oModel=new JSONModel()
+         oModel.setData({
+             errorTypes: [
           { key: "Nomination", text: "Nomination Error" },
           { key: "Contract", text: "Contract Error" }
         ],
         data: []
-      }));
+         })
+      this.getView().setModel(oModel, "JasonModel");
 
       // Default load
       this._loadConfig("Nomination");
@@ -45,6 +48,7 @@ sap.ui.define([
 
     _loadConfig: function(type) {
       let cfg = this._config[type];
+      console.log("Binding path:", cfg.entitySet);
       let view = this.getView();
 
       // Build dynamic columns
