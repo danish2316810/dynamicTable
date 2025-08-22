@@ -1,0 +1,131 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "usib.app.dan.usidappdandynamictable",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.5",
+      "toolsId": "7337a4ef-ff80-41cb-add8-9e0d0304b488"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/catalog/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "usibdynmictable-MANAGE": {
+          "semanticObject": "usibdynmictable",
+          "action": "MANAGE",
+          "title": "{{usibdynmictable-MANAGE.flpTitle}}",
+          "subTitle": "{{usibdynmictable-MANAGE.flpSubtitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.139.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "usib.app.dan.usidappdandynamictable.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "usib.app.dan.usidappdandynamictable.view",
+        "async": true,
+        "viewPath": "usib.app.dan.usidappdandynamictable.view"
+      },
+      "routes": [
+        {
+          "name": "RouteTableView",
+          "pattern": ":?query:",
+          "target": [
+            "TargetTableView"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetTableView": {
+          "id": "TableView",
+          "name": "TableView"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "usib.app.dan.usidappdandynamictable.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}

@@ -1,0 +1,29 @@
+<mvc:View controllerName="usib.app.dan.usidappdandynamictable.controller.TableView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>title}">
+         <content>
+            <Button text="hi"></Button>
+            <VBox >
+                <Select id="errorTypeSelect"
+                change=".onErrorTypeChange"
+                items="{
+                  path: '/errorTypes'
+                }">
+          <core:Item key="{key}" text="{text}" xmlns:core="sap.ui.core"/>
+        </Select>
+        <!-- Filter bar -->
+        <Toolbar id="filterBar" design="Auto" />
+          <Table id="dynamicTable" inset="false">
+            <headerToolbar>
+                <Toolbar>
+                <Title text="Error Data"/>
+                </Toolbar>
+            </headerToolbar>
+            </Table>
+            </VBox>
+     
+         </content>
+    </Page>
+</mvc:View>
