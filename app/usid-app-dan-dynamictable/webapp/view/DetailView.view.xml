@@ -1,0 +1,12 @@
+<mvc:View controllerName="usib.app.dan.usidappdandynamictable.controller.DetailView"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="DetailPage" title="{i18n>DetailPage}">
+         <content>
+            
+          <Button text="detailview"></Button>
+           <VBox id="detailBox"/>
+         </content>
+    </Page>
+</mvc:View>

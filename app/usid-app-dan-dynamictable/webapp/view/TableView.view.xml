@@ -4,7 +4,7 @@
     xmlns:core="sap.ui.core">
     <Page id="page" title="{i18n>title}">
          <content>
-            <Button text="hi"></Button>
+            
             <VBox >
                 <Select id="errorTypeSelect"
                 change=".onErrorTypeChange"
@@ -15,7 +15,7 @@
         </Select>
         <!-- Filter bar -->
         <Toolbar id="filterBar" design="Auto" />
-          <Table id="dynamicTable" inset="false">
+          <Table id="dynamicTable" inset="false" mode="SingleSelectMaster" selectionChange="onLineItemClick">
             <headerToolbar>
                 <Toolbar>
                 <Title text="Error Data"/>

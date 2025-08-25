@@ -104,23 +104,34 @@
         "path": "usib.app.dan.usidappdandynamictable.view",
         "async": true,
         "viewPath": "usib.app.dan.usidappdandynamictable.view"
+        },
+        "routes": [
+          {
+            "name": "RouteTableView",
+            "pattern": ":?query:",
+            "target": [
+              "TargetTableView"
+            ]
+          },
+          {
+            "name": "RouteDetailView",
+            "pattern": "detailView/{id}/{type}",
+            "target": [
+              "TargetDetailView"
+            ]
+          }
+        ],
+        "targets": {
+          "TargetTableView": {
+            "id": "TableView",
+            "name": "TableView"
+          },
+          "TargetDetailView":{
+            "id":"idDetailView",
+            "name":"DetailView"
+          }
+        }
       },
-      "routes": [
-        {
-          "name": "RouteTableView",
-          "pattern": ":?query:",
-          "target": [
-            "TargetTableView"
-          ]
-        }
-      ],
-      "targets": {
-        "TargetTableView": {
-          "id": "TableView",
-          "name": "TableView"
-        }
-      }
-    },
     "rootView": {
       "viewName": "usib.app.dan.usidappdandynamictable.view.App",
       "type": "XML",

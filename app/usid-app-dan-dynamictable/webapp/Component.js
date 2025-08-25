@@ -20,7 +20,9 @@ sap.ui.define([
             this.setModel(models.createDeviceModel(), "device");
 
             // enable routing
-            this.getRouter().initialize();
+            let oRouter=this.getRouter()
+            oRouter.initialize();
+            oRouter.navTo("RouteTableView", {}, true);
         }
     });
 });
