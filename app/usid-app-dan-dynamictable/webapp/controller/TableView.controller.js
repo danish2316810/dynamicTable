@@ -17,12 +17,12 @@ sap.ui.define([
       this._config = {
         Nomination: {
           entitySet: "/Nominations",
-          columns: ["ID", "NominationId", "StartDate", "EndDate"],
+          columns: ["ID", "NominationId", "StartDate", "EndDate","Action"],
           filters: ["NominationId", "StartDate", "EndDate"]
         },
         Contract: {
           entitySet: "/Contracts",
-          columns: ["ID","ContractId", "Supplier"],
+          columns: ["ID","ContractId", "Supplier","Action"],
           filters: ["ContractId", "Supplier"]
         }
       };
@@ -84,12 +84,34 @@ sap.ui.define([
 
       // Bind data (CAP OData)
       let oModel = this.getOwnerComponent().getModel(); // OData V4 model
+      let that=this;
       oTable.bindItems({
-        path: cfg.entitySet,
-        template: new sap.m.ColumnListItem({
-          cells: cfg.columns.map(c => new Text({ text: "{" + c + "}" }))
-        })
-      });
+            path: cfg.entitySet,
+            template: new sap.m.ColumnListItem({
+              cells: cfg.columns.map(c => {
+                if (c === "Action") {
+                  return new sap.m.Button({
+                    text: "Reprocess",
+                    type: "Emphasized",
+                    press: that._onReprocess
+                  }).bindProperty("visible", {
+                    path: "EnableReprocessing",
+                    formatter: function (bValue) {
+                      return bValue === true;
+                    }
+                  });
+                } else {
+                  return new Text({ text: "{" + c + "}" });
+                }
+              })
+            })
+          });
+
+    },
+
+    
+    _onReprocess:function(){
+        MessageBox.show("i am triggerd")
     },
     _onLiveSearch: function() {
   let view = this.getView();
